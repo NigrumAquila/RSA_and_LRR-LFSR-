@@ -2,12 +2,11 @@ from ..helpers.fileHelpers import pickFileForEncrypt, pickFileForDecrypt
 
 
 class LRR:
-    NBYTES = 16
+    NBYTES = 1
     TAPS = (8,7,6,1)
 
     generateKey = staticmethod(lambda: bin(int.from_bytes(getattr(__import__('os'), 'urandom')(LRR.NBYTES), byteorder='big'))[2:])
     
-
     @staticmethod
     def generateGamma(shift_register_state):
         xor_input = 1; nbits = shift_register_state.bit_length()
@@ -16,7 +15,6 @@ class LRR:
                 xor_input ^= 1
         shift_register_state = (xor_input << nbits-1) + (shift_register_state >> 1)
         return shift_register_state
-
 
     @staticmethod
     def encrypt(seed):
@@ -29,18 +27,26 @@ class LRR:
             gamma = LRR.generateGamma(shift_register_state)
             shift_register_state = gamma
             cipherChar = gamma ^ int.from_bytes(char, byteorder='big')
-            cipherBytes = cipherChar.to_bytes(LRR.NBYTES*4, byteorder='big')
+            cipherBytes = cipherChar.to_bytes(16, byteorder='big')
             dstFile.write(cipherBytes)
         srcFile.close(); dstFile.close()
 
-
+        # for char in srcFile.read(1):
+        #     gamma = LRR.generateGamma(shift_register_state)
+        #     shift_register_state = gamma
+        #     # cipherChar = gamma ^ int.from_bytes(char, byteorder='big')
+        #     cipherChar = gamma ^ char
+        #     cipherBytes = cipherChar.to_bytes(16, byteorder='big')
+        #     dstFile.write(cipherBytes)
+        # srcFile.close(); dstFile.close()
+    
     @staticmethod
     def decrypt(seed):
         srcFile, dstFile = pickFileForDecrypt()
         shift_register_state = int(seed)
 
         while True:
-            char = srcFile.read(LRR.NBYTES*4)
+            char = srcFile.read(16)
             if not char: break
             gamma = LRR.generateGamma(shift_register_state)
             shift_register_state = gamma
@@ -48,3 +54,13 @@ class LRR:
             decryptedByte = decryptedChar.to_bytes(1, byteorder='big')
             dstFile.write(decryptedByte)
         srcFile.close(); dstFile.close()
+
+        # for char in srcFile.read(1):
+        #     gamma = LRR.generateGamma(shift_register_state)
+        #     shift_register_state = gamma
+        #     decryptedChar = gamma ^ char
+        #     print(char, decryptedChar)
+        #     exit()
+        #     decryptedByte = decryptedChar.to_bytes(1, byteorder='big')
+        #     dstFile.write(decryptedByte)
+        # srcFile.close(); dstFile.close()
