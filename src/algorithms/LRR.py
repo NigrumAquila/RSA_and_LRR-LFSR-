@@ -36,6 +36,6 @@ class LRR:
         for char in srcFile.readlines():
             gamma = LRR.generateGamma(shift_register_state)
             shift_register_state = gamma
-            encodedChar = gamma ^ int(char.splitlines()[0])
-            dstFile.write(chr(encodedChar))
+            decryptedChar = gamma ^ int(char.splitlines()[0])
+            dstFile.write(chr(decryptedChar))
         srcFile.close(); dstFile.close()

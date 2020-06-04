@@ -27,3 +27,9 @@ https://www.delftstack.com/ru/howto/python/how-to-convert-bytes-to-integers/
 
 generate random key
 https://stackoverflow.com/questions/5000946/how-to-generate-strong-one-time-session-key-for-aes-in-python
+
+
+Progress bar
+https://pypi.org/project/ProgressPrinter/
+https://elcapitan.io/ProgressPrinter/index.html
+https://pypi.org/project/progress/

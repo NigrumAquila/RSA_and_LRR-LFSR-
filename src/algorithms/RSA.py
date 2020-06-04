@@ -33,6 +33,6 @@ class RSA:
         d, n  = int(privateKey['d']), int(privateKey['n'])
 
         for char in srcFile.readlines():
-            encryptedChar = pow(int(char.splitlines()[0]), d, n)
-            dstFile.write(chr(encryptedChar))
+            decryptedChar = pow(int(char.splitlines()[0]), d, n)
+            dstFile.write(chr(decryptedChar))
         srcFile.close(); dstFile.close()
