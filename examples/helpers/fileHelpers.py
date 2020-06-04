@@ -1,6 +1,6 @@
-pathToKeys = 'keys/'
-
 def writeKeys(key, alg):
+    pathToKeys = 'keys/'
+    
     if alg == 'rsa':
         pkFile = open(pathToKeys + 'rsa.pk', 'w')
         pubkFile = open(pathToKeys + 'rsa.pubk', 'w')
@@ -25,12 +25,8 @@ def writeKeys(key, alg):
             pkFile.write(pkChar)
         pkFile.close()
 
-def readKey(alg, typeKey):
-    key = {}
 
-    if alg == 'rsa':
-        if typeKey == 'public': key['e'] = open(pathToKeys + 'rsa.pubk', 'r').read()
-        elif typeKey == 'private': key['d'] = open(pathToKeys + 'rsa.pk', 'r').read()
-        key['n'] = open(pathToKeys + 'rsa.modulus', 'r').read()
-    
-    return key
+def generateKeys():
+    public_key = {'e': 234, 'n': 14}
+    private_key = {'d': 432134, 'n': 232}
+    return public_key, private_key

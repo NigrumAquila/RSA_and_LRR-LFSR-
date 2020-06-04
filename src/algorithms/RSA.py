@@ -1,6 +1,6 @@
-from .common.primeGenerator import primeGenerator
-from .common.checkPrimesRelatively import checkPrimesRelatively
-from .common.multiplicativeInverse import multiplicativeInverse
+from ..common.primeGenerator import primeGenerator
+from ..common.checkPrimesRelatively import checkPrimesRelatively
+from ..common.multiplicativeInverse import multiplicativeInverse
 
 
 class RSA:
@@ -15,6 +15,6 @@ class RSA:
         publicKey = {'e': e, 'n': n}; privateKey = {'d': d, 'n': n}
         print('p:', p, 'q:', q, '\nn:', n, 'fi:', fi, '\ne:', e, 'd:', d, '\npublic key:', publicKey, 'private key:', privateKey)
         return publicKey, privateKey
-    
+
     encrypt = staticmethod(lambda publicKey, message: pow(message, int(publicKey['e']), int(publicKey['n'])))
     decrypt = staticmethod(lambda privateKey, cipher: pow(cipher, int(privateKey['d']), int(privateKey['n'])))

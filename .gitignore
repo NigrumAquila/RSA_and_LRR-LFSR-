@@ -1,6 +1,7 @@
-test.py
-/examples
-/info/links*
+#test.py
+#/examples
+#/info/links*
+#tasks
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

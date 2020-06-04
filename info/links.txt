@@ -1,0 +1,29 @@
+RSA
+https://ru.wikipedia.org/wiki/RSA#%D0%92%D1%8B%D0%B1%D0%BE%D1%80_%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D1%8F_%D1%81%D0%B5%D0%BA%D1%80%D0%B5%D1%82%D0%BD%D0%BE%D0%B3%D0%BE_%D0%BF%D0%BE%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D0%B5%D0%BB%D1%8F
+http://code.activestate.com/recipes/578838-rsa-a-simple-and-easy-to-read-implementation/
+https://javatalks.ru/topics/12392
+
+
+LFSR
+https://www.intuit.ru/studies/courses/691/547/lecture/12385
+https://ru.wikipedia.org/wiki/%D0%A0%D0%B5%D0%B6%D0%B8%D0%BC_%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F#Output_Feedback_(OFB)
+https://macs358.org/chapters/10/4/lfsr.html
+https://en.wikipedia.org/wiki/Linear-feedback_shift_register
+https://ru.wikipedia.org/wiki/%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80_%D1%81%D0%B4%D0%B2%D0%B8%D0%B3%D0%B0_%D1%81_%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BD%D0%BE%D0%B9_%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D0%BE%D0%B9_%D1%81%D0%B2%D1%8F%D0%B7%D1%8C%D1%8E#:~:text=%D0%A0%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%20%D1%81%D0%B4%D0%B2%D0%B8%D0%B3%D0%B0%20%D1%81%20%D0%BB%D0%B8%D0%BD%D0%B5%D0%B9%D0%BD%D0%BE%D0%B9%20%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D0%BD%D0%BE%D0%B9%20%D1%81%D0%B2%D1%8F%D0%B7%D1%8C%D1%8E%20(%D0%A0%D0%A1%D0%9B%D0%9E%D0%A1%2C%20%D0%B0%D0%BD%D0%B3%D0%BB.,%D0%BE%D1%81%D1%82%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D1%85%20%D0%B1%D0%B8%D1%82%D0%BE%D0%B2%20%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%20%D0%B4%D0%BE%20%D1%81%D0%B4%D0%B2%D0%B8%D0%B3%D0%B0.
+
+
+Common
+https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%B8%D0%BC%D0%B8%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9_%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE%D1%87%D0%BB%D0%B5%D0%BD
+
+
+Шифры A5/1 и A5/2, E0
+https://ru.wikipedia.org/wiki/A5_(%D0%B0%D0%BB%D0%B3%D0%BE%D1%80%D0%B8%D1%82%D0%BC_%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F)#%D0%A1%D1%82%D1%80%D1%83%D0%BA%D1%82%D1%83%D1%80%D0%B0_%D0%905
+
+
+data types
+https://stackoverflow.com/questions/34009653/convert-bytes-to-int
+https://www.delftstack.com/ru/howto/python/how-to-convert-bytes-to-integers/
+
+
+generate random key
+https://stackoverflow.com/questions/5000946/how-to-generate-strong-one-time-session-key-for-aes-in-python

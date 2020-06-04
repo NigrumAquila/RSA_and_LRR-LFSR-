@@ -25,7 +25,6 @@ while True:
             elif case == '4':
                 if not 'pubKey' in locals(): print('Key is not defined.'); continue
                 if pubKey == '': print('Key is empty.'); continue
-
                 data = open('data/text.txt').read()[3:]
                 cipher = RSA.encrypt(pubKey, int(data))
                 
@@ -39,7 +38,6 @@ while True:
             elif case == '5':
                 if not 'privKey' in locals(): print('Key is not defined.'); continue
                 if privKey == '': print('Key is empty.'); continue
-
                 cipher = open('data/cipher', 'r').read()
                 decrypted = RSA.decrypt(privKey, int(cipher))
                 print('File decrypted.', decrypted)
@@ -65,16 +63,10 @@ while True:
                 print('Key selected.')
             
             elif case == '3':
-                if not 'key' in locals(): print('Key is not defined.'); continue
-                if key == '': print('Key is empty.'); continue
-
                 LRR.encrypt(key)
                 print('File encrypted.')
 
             elif case == '4':
-                if not 'key' in locals(): print('Key is not defined.'); continue
-                if key == '': print('Key is empty.'); continue
-
                 LRR.decrypt(key)
                 print('File decrypted.')
 
