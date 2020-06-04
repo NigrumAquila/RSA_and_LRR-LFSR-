@@ -26,23 +26,15 @@ while True:
                 if not 'pubKey' in locals(): print('Key is not defined.'); continue
                 if pubKey == '': print('Key is empty.'); continue
 
-                data = open('data/text.txt').read()[3:]
-                cipher = RSA.encrypt(pubKey, int(data))
-                
-                cipherFile = open('data/cipher', 'w')
-                for cipherChar in str(cipher):
-                    cipherFile.write(cipherChar)
-                cipherFile.close()
-
-                print('File encrypted.', cipher)
+                RSA.encrypt(pubKey)
+                print('File encrypted.')
 
             elif case == '5':
                 if not 'privKey' in locals(): print('Key is not defined.'); continue
                 if privKey == '': print('Key is empty.'); continue
 
-                cipher = open('data/cipher', 'r').read()
-                decrypted = RSA.decrypt(privKey, int(cipher))
-                print('File decrypted.', decrypted)
+                RSA.decrypt(privKey)
+                print('File decrypted.')
 
             elif case == 'e':
                 exit('Execution completed.')

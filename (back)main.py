@@ -33,7 +33,7 @@ while True:
                     cipherFile.write(cipherChar)
                 cipherFile.close()
 
-                print('File encrypted.', cipher)
+                print('File encrypted.')
 
             elif case == '5':
                 if not 'privKey' in locals(): print('Key is not defined.'); continue

@@ -29,3 +29,18 @@ def readKey(alg, typeKey = None):
     elif alg == 'lrr':
         return open(pathToKey, 'r').read()
 
+
+def pickFileForEncrypt():
+    srcFilePath = pickFile()
+    dstFilePath = srcFilePath + '.encoded'
+    srcFile = open(srcFilePath, 'r')
+    dstFile = open(dstFilePath, 'w')
+    return srcFile, dstFile
+
+
+def pickFileForDecrypt():
+    srcFilePath = pickFile()
+    dstFilePath = srcFilePath[0:-7] + 'decoded'
+    srcFile = open(srcFilePath, 'r')
+    dstFile = open(dstFilePath, 'w')
+    return srcFile, dstFile

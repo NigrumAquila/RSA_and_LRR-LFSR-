@@ -1,1 +1,3 @@
-import src.algorithms.LRR
+e, g = 1, 4
+
+print(e,g)

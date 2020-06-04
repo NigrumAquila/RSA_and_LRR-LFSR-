@@ -1,7 +1,6 @@
 from ..common.primeGenerator import primeGenerator
 from ..common.checkPrimesRelatively import checkPrimesRelatively
 from ..common.multiplicativeInverse import multiplicativeInverse
-from ..helpers.fileHelpers import pickFileForEncrypt, pickFileForDecrypt
 
 
 class RSA:
@@ -17,22 +16,5 @@ class RSA:
         print('p:', p, 'q:', q, '\nn:', n, 'fi:', fi, '\ne:', e, 'd:', d, '\npublic key:', publicKey, 'private key:', privateKey)
         return publicKey, privateKey
 
-    @staticmethod
-    def encrypt(publicKey):
-        srcFile, dstFile = pickFileForEncrypt()
-        e, n  = int(publicKey['e']), int(publicKey['n'])
-
-        for char in srcFile.read():
-            cipherChar = pow(ord(char), e, n)
-            dstFile.write(str(cipherChar) + '\n')
-        srcFile.close(); dstFile.close()
-
-    @staticmethod
-    def decrypt(privateKey):
-        srcFile, dstFile = pickFileForDecrypt()
-        d, n  = int(privateKey['d']), int(privateKey['n'])
-
-        for char in srcFile.readlines():
-            encryptedChar = pow(int(char.splitlines()[0]), d, n)
-            dstFile.write(chr(encryptedChar))
-        srcFile.close(); dstFile.close()
+    encrypt = staticmethod(lambda publicKey, message: pow(message, int(publicKey['e']), int(publicKey['n'])))
+    decrypt = staticmethod(lambda privateKey, cipher: pow(cipher, int(privateKey['d']), int(privateKey['n'])))

@@ -1,3 +1,6 @@
+from ..helpers.fileHelpers import pickFileForEncrypt, pickFileForDecrypt
+
+
 class LRR:
     NBYTES = 1
     TAPS = (8,7,6,1)
@@ -15,12 +18,7 @@ class LRR:
 
     @staticmethod
     def encrypt(seed):
-        from ..helpers.pickFile import pickFile
-        
-        srcFilePath = pickFile()
-        dstFilePath = srcFilePath + '.encoded'
-        srcFile = open(srcFilePath, 'r')
-        dstFile = open(dstFilePath, 'w')
+        srcFile, dstFile = pickFileForEncrypt()
         shift_register_state = int(seed)
 
         for char in srcFile.read():
@@ -32,12 +30,7 @@ class LRR:
     
     @staticmethod
     def decrypt(seed):
-        from ..helpers.pickFile import pickFile
-
-        srcFilePath = pickFile()
-        dstFilePath = srcFilePath[0:-7] + 'decoded'
-        srcFile = open(srcFilePath, 'r')
-        dstFile = open(dstFilePath, 'w')
+        srcFile, dstFile = pickFileForDecrypt()
         shift_register_state = int(seed)
 
         for char in srcFile.readlines():
@@ -46,8 +39,3 @@ class LRR:
             encodedChar = gamma ^ int(char.splitlines()[0])
             dstFile.write(chr(encodedChar))
         srcFile.close(); dstFile.close()
-
-# print(LRR.generateGamma(10001101))
-# print(LRR.generateKey())
-# LRR.encrypt('10001101')
-# LRR.decrypt('10001101')
