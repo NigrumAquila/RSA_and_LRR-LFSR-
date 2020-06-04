@@ -22,9 +22,12 @@ class RSA:
         srcFile, dstFile = pickFileForEncrypt()
         e, n  = int(publicKey['e']), int(publicKey['n'])
 
-        for char in srcFile.read():
-            cipherChar = pow(ord(char), e, n)
-            dstFile.write(str(cipherChar) + '\n')
+        while True:
+            char = srcFile.read(1)
+            if not char: break
+            cipherChar = pow(int.from_bytes(char, byteorder='big'), e, n)
+            cipherBytes = cipherChar.to_bytes(64, byteorder='big')
+            dstFile.write(cipherBytes)
         srcFile.close(); dstFile.close()
 
     @staticmethod
@@ -32,7 +35,10 @@ class RSA:
         srcFile, dstFile = pickFileForDecrypt()
         d, n  = int(privateKey['d']), int(privateKey['n'])
 
-        for char in srcFile.readlines():
-            decryptedChar = pow(int(char.splitlines()[0]), d, n)
-            dstFile.write(chr(decryptedChar))
+        while True:
+            char = srcFile.read(64)
+            if not char: break
+            decryptedChar = pow(int.from_bytes(char, byteorder='big'), d, n)
+            decryptedByte = decryptedChar.to_bytes(1, byteorder='big')
+            dstFile.write(decryptedByte)
         srcFile.close(); dstFile.close()

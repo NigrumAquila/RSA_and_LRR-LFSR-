@@ -1,3 +1,3 @@
-from src.algorithms.LRR import LRR
+from src.algorithms.RSA import RSA
 
-LRR.decrypt(10000111)
+# RSA.decrypt()
