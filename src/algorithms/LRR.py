@@ -20,31 +20,41 @@ class LRR:
 
     @staticmethod
     def encrypt(seed):
+        from progress.bar import Bar
+
         srcFile, dstFile = pickFileForEncrypt()
         shift_register_state = int(seed)
 
-        while True:
-            char = srcFile.read(1)
-            if not char: break
-            gamma = LRR.generateGamma(shift_register_state)
-            shift_register_state = gamma
-            cipherChar = gamma ^ int.from_bytes(char, byteorder='big')
-            cipherBytes = cipherChar.to_bytes(LRR.NBYTES*4, byteorder='big')
-            dstFile.write(cipherBytes)
+        with Bar('Processing', max=len(srcFile.read())) as bar:
+            srcFile.seek(0)
+            while True:
+                char = srcFile.read(1)
+                if not char: break
+                gamma = LRR.generateGamma(shift_register_state)
+                shift_register_state = gamma
+                cipherChar = gamma ^ int.from_bytes(char, byteorder='big')
+                cipherBytes = cipherChar.to_bytes(LRR.NBYTES*4, byteorder='big')
+                dstFile.write(cipherBytes)
+                bar.next()
         srcFile.close(); dstFile.close()
 
 
     @staticmethod
     def decrypt(seed):
+        from progress.bar import Bar
+
         srcFile, dstFile = pickFileForDecrypt()
         shift_register_state = int(seed)
 
-        while True:
-            char = srcFile.read(LRR.NBYTES*4)
-            if not char: break
-            gamma = LRR.generateGamma(shift_register_state)
-            shift_register_state = gamma
-            decryptedChar = gamma ^ int.from_bytes(char, byteorder='big')
-            decryptedByte = decryptedChar.to_bytes(1, byteorder='big')
-            dstFile.write(decryptedByte)
+        with Bar('Processing', max=len(srcFile.read())/(LRR.NBYTES*4)) as bar:
+            srcFile.seek(0)
+            while True:
+                char = srcFile.read(LRR.NBYTES*4)
+                if not char: break
+                gamma = LRR.generateGamma(shift_register_state)
+                shift_register_state = gamma
+                decryptedChar = gamma ^ int.from_bytes(char, byteorder='big')
+                decryptedByte = decryptedChar.to_bytes(1, byteorder='big')
+                dstFile.write(decryptedByte)
+                bar.next()
         srcFile.close(); dstFile.close()
