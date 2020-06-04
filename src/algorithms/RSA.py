@@ -1,17 +1,17 @@
-from ..common.primeGenerator import primeGenerator
 from ..common.checkPrimesRelatively import checkPrimesRelatively
 from ..common.multiplicativeInverse import multiplicativeInverse
 from ..helpers.fileHelpers import pickFileForEncrypt, pickFileForDecrypt
+from sympy import randprime
 
 
 class RSA:
     @staticmethod
     def generateKeys():
-        p = primeGenerator(2**10, 2**20); q = primeGenerator(2**10, 2**20)
+        p = randprime(2**128, 2**156); q = randprime(2**128, 2**156)
         n = p*q; fi = (p-1)*(q-1)
-        e = primeGenerator(1, fi)
+        e = randprime(1, fi)
         while(checkPrimesRelatively(e, fi) != True):
-            e = primeGenerator(1, fi)
+            e = randprime(1, fi)
         d = multiplicativeInverse(e, fi)
         publicKey = {'e': e, 'n': n}; privateKey = {'d': d, 'n': n}
         print('p:', p, 'q:', q, '\nn:', n, 'fi:', fi, '\ne:', e, 'd:', d, '\npublic key:', publicKey, 'private key:', privateKey)
