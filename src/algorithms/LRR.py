@@ -21,21 +21,46 @@ class LRR:
         srcFile, dstFile = pickFileForEncrypt()
         shift_register_state = int(seed)
 
-        for char in srcFile.read():
+        while True:
+            char = srcFile.read(1)
+            if not char: break
             gamma = LRR.generateGamma(shift_register_state)
             shift_register_state = gamma
-            cipherChar = gamma ^ ord(char)
-            dstFile.write(str(cipherChar) + '\n')
+            cipherChar = gamma ^ int.from_bytes(char, byteorder='big')
+            cipherBytes = cipherChar.to_bytes(16, byteorder='big')
+            dstFile.write(cipherBytes)
         srcFile.close(); dstFile.close()
+
+        # for char in srcFile.read(1):
+        #     gamma = LRR.generateGamma(shift_register_state)
+        #     shift_register_state = gamma
+        #     # cipherChar = gamma ^ int.from_bytes(char, byteorder='big')
+        #     cipherChar = gamma ^ char
+        #     cipherBytes = cipherChar.to_bytes(16, byteorder='big')
+        #     dstFile.write(cipherBytes)
+        # srcFile.close(); dstFile.close()
     
     @staticmethod
     def decrypt(seed):
         srcFile, dstFile = pickFileForDecrypt()
         shift_register_state = int(seed)
 
-        for char in srcFile.readlines():
+        while True:
+            char = srcFile.read(16)
+            if not char: break
             gamma = LRR.generateGamma(shift_register_state)
             shift_register_state = gamma
-            decryptedChar = gamma ^ int(char.splitlines()[0])
-            dstFile.write(chr(decryptedChar))
+            decryptedChar = gamma ^ int.from_bytes(char, byteorder='big')
+            decryptedByte = decryptedChar.to_bytes(1, byteorder='big')
+            dstFile.write(decryptedByte)
         srcFile.close(); dstFile.close()
+
+        # for char in srcFile.read(1):
+        #     gamma = LRR.generateGamma(shift_register_state)
+        #     shift_register_state = gamma
+        #     decryptedChar = gamma ^ char
+        #     print(char, decryptedChar)
+        #     exit()
+        #     decryptedByte = decryptedChar.to_bytes(1, byteorder='big')
+        #     dstFile.write(decryptedByte)
+        # srcFile.close(); dstFile.close()

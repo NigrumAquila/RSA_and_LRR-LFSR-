@@ -33,14 +33,14 @@ def readKey(alg, typeKey = None):
 def pickFileForEncrypt():
     srcFilePath = pickFile()
     dstFilePath = srcFilePath + '.encrypted'
-    srcFile = open(srcFilePath, 'r')
-    dstFile = open(dstFilePath, 'w')
+    srcFile = open(srcFilePath, 'rb')
+    dstFile = open(dstFilePath, 'wb')
     return srcFile, dstFile
 
 
 def pickFileForDecrypt():
     srcFilePath = pickFile()
     dstFilePath = srcFilePath[0:-9] + 'decrypted'
-    srcFile = open(srcFilePath, 'r')
-    dstFile = open(dstFilePath, 'w')
+    srcFile = open(srcFilePath, 'rb')
+    dstFile = open(dstFilePath, 'wb')
     return srcFile, dstFile
