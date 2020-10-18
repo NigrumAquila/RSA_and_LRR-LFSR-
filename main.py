@@ -7,7 +7,7 @@ while True:
         from src.algorithms.RSA import RSA
 
         while True:
-            case = input('Select action: 1 - Generate keys; 2 - Select public key; 3 - Select private key; 4 - Encode file; 5 - Decode file; "e" - to exit: ')
+            case = input('Select action: 1 - Generate keys; 2 - Select public key; 3 - Select private key; 4 - Encrypt file; 5 - Decrypt file; "e" - to exit: ')
 
             if case == '1':
                 writeKey(RSA.generateKeys(), 'rsa')
@@ -46,7 +46,7 @@ while True:
         from src.algorithms.LRR import LRR
 
         while True:
-            case = input('Select action: 1 - Generate key; 2 - Select key; 3 - Encode file; 4 - Decode file; "e" - to exit: ')
+            case = input('Select action: 1 - Generate key; 2 - Select key; 3 - Encrypt file; 4 - Decrypt file; "e" - to exit: ')
 
             if case == '1':
                 writeKey(LRR.generateKey(), 'lrr')

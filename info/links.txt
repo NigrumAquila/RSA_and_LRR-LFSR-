@@ -30,6 +30,9 @@ https://stackoverflow.com/questions/5000946/how-to-generate-strong-one-time-sess
 
 
 Progress bar
+query: progress bar python
 https://pypi.org/project/ProgressPrinter/
 https://elcapitan.io/ProgressPrinter/index.html
 https://pypi.org/project/progress/
+https://habr.com/ru/post/483400/
+https://habr.com/ru/post/81532/
