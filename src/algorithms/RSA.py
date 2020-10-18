@@ -7,7 +7,7 @@ from sympy import randprime
 class RSA:
     @staticmethod
     def generateKeys():
-        p = randprime(2**128, 2**156); q = randprime(2**128, 2**156)
+        p = randprime(2**63, 2**64); q = randprime(2**63, 2**64)
         n = p*q; fi = (p-1)*(q-1)
         e = randprime(1, fi)
         while(checkPrimesRelatively(e, fi) != True):
@@ -31,7 +31,7 @@ class RSA:
                 char = srcFile.read(1)
                 if not char: break
                 cipherChar = pow(int.from_bytes(char, byteorder='big'), e, n)
-                cipherBytes = cipherChar.to_bytes(64, byteorder='big')
+                cipherBytes = cipherChar.to_bytes(16, byteorder='big')
                 dstFile.write(cipherBytes)
                 bar.next()
         srcFile.close(); dstFile.close()
@@ -44,10 +44,10 @@ class RSA:
         srcFile, dstFile = pickFileForDecrypt()
         d, n  = int(privateKey['d']), int(privateKey['n'])
 
-        with Bar('Processing', max=len(srcFile.read())/64) as bar:
+        with Bar('Processing', max=len(srcFile.read())/16) as bar:
             srcFile.seek(0)
             while True:
-                char = srcFile.read(64)
+                char = srcFile.read(16)
                 if not char: break
                 decryptedChar = pow(int.from_bytes(char, byteorder='big'), d, n)
                 decryptedByte = decryptedChar.to_bytes(1, byteorder='big')

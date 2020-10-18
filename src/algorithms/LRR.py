@@ -3,7 +3,7 @@ from ..helpers.fileHelpers import pickFileForEncrypt, pickFileForDecrypt
 
 class LRR:
     NBYTES = 16
-    TAPS = (8,7,6,1)
+    TAPS = (128,126,101,99)
 
     generateKey = staticmethod(lambda: bin(int.from_bytes(getattr(__import__('os'), 'urandom')(LRR.NBYTES), byteorder='big'))[2:])
     
@@ -23,7 +23,7 @@ class LRR:
         from progress.bar import Bar
 
         srcFile, dstFile = pickFileForEncrypt()
-        shift_register_state = int(seed)
+        shift_register_state = int(seed, 2)
 
         with Bar('Processing', max=len(srcFile.read())) as bar:
             srcFile.seek(0)
@@ -33,7 +33,7 @@ class LRR:
                 gamma = LRR.generateGamma(shift_register_state)
                 shift_register_state = gamma
                 cipherChar = gamma ^ int.from_bytes(char, byteorder='big')
-                cipherBytes = cipherChar.to_bytes(LRR.NBYTES*4, byteorder='big')
+                cipherBytes = cipherChar.to_bytes(LRR.NBYTES, byteorder='big')
                 dstFile.write(cipherBytes)
                 bar.next()
         srcFile.close(); dstFile.close()
@@ -44,12 +44,12 @@ class LRR:
         from progress.bar import Bar
 
         srcFile, dstFile = pickFileForDecrypt()
-        shift_register_state = int(seed)
+        shift_register_state = int(seed, 2)
 
-        with Bar('Processing', max=len(srcFile.read())/(LRR.NBYTES*4)) as bar:
+        with Bar('Processing', max=len(srcFile.read())/(LRR.NBYTES)) as bar:
             srcFile.seek(0)
             while True:
-                char = srcFile.read(LRR.NBYTES*4)
+                char = srcFile.read(LRR.NBYTES)
                 if not char: break
                 gamma = LRR.generateGamma(shift_register_state)
                 shift_register_state = gamma
